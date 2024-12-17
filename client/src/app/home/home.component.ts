@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CustomerMe } from '../model/customer.model';
 import { CustomerService } from './customer.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { extractErrorMessage } from '../global';
 
 @Component({
   selector: 'home',
@@ -11,6 +12,7 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class HomeComponent implements OnInit {
   customer?: CustomerMe;
+  errorMessage?: string;
 
   constructor(
     private router: Router,
@@ -19,9 +21,10 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.customerService
-      .getCustomer$()
-      .subscribe((customer) => (this.customer = customer));
+    this.customerService.getCustomer$().subscribe(
+      (customer) => (this.customer = customer),
+      (error) => (this.errorMessage = extractErrorMessage(error))
+    );
   }
 
   logout() {

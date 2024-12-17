@@ -3,6 +3,7 @@ import { CustomerCredentials, Token } from '../model/customer.model';
 import { AuthenticationService } from '../services/authentication.service';
 import { Observable, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
+import { extractErrorMessage } from '../global';
 
 @Component({
   selector: 'login',
@@ -26,7 +27,7 @@ export class LoginComponent {
   submit() {
     this.aunthenticate$().subscribe(
       () => this.gotoHomePage(),
-      (error) => (this.errorMessage = error.errorMessage)
+      (error) => (this.errorMessage = extractErrorMessage(error))
     );
   }
 

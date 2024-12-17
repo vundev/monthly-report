@@ -13,7 +13,19 @@
   </header>
   <div class="content-container">
     <div class="content-area">
-      <div>Hello {{ customer?.customerName }}</div>
+      <div *ngIf="customer; else unauthorized">
+        Hello {{ customer.customerName }}
+      </div>
     </div>
   </div>
 </div>
+<!-- Temppalates -->
+<ng-template #unauthorized>
+  <clr-alert [clrAlertClosable]="false" [clrAlertType]="'danger'">
+    <clr-alert-item>
+      <span class="alert-text">
+        You are not authorized to see this content
+      </span>
+    </clr-alert-item>
+  </clr-alert>
+</ng-template>
