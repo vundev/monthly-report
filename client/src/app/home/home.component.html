@@ -1,3 +1,19 @@
-<h3>Home</h3>
-<div>Hello {{ customer?.customerName }}</div>
-<button (click)="logout()">Logout</button>
+<div class="main-container">
+  <header class="header header-6">
+    <div class="branding">
+      <a routerLink="/"
+        ><cds-icon shape="home"></cds-icon> <span class="title">Home</span></a
+      >
+    </div>
+    <div class="header-nav">
+      <a class="nav-link" (click)="logout()" href="javascript:void(0)"
+        ><span class="nav-title">Log out</span></a
+      >
+    </div>
+  </header>
+  <div class="content-container">
+    <div class="content-area">
+      <div>Hello {{ customer?.customerName }}</div>
+    </div>
+  </div>
+</div>
