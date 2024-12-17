@@ -1,8 +1,8 @@
 from fastapi_utils.cbv import cbv
 from fastapi import APIRouter
 from ..app.customer.dependency import CustomerRepositoryDep
-from ..app.customer.customer_model import CustomerCredentials
-from ..security.dependency import PasswordContextDep, CustomerFormDataDep, TokenServiceDep
+from ..app.customer.customer_model import CustomerCredentials, CustomerMe
+from ..security.dependency import PasswordContextDep, CustomerFormDataDep, TokenServiceDep, TokenDep
 from fastapi import HTTPException, status
 
 router = APIRouter(prefix="/customer")
@@ -34,8 +34,12 @@ class CustomerController:
         return self.token_service.create_token(customer_name=customer.customer_name)
 
     @router.get("/me")
-    async def get_customer(self):
-        return "me"
+    async def get_customer(self, token: TokenDep):
+        token_data = self.token_service.get_token_data(token=token)
+        customer = await self.customer_repository.find_customer_by_name(
+            customer_name=token_data.customer_name)
+        # resource_model=CustomerMe does not work with alias, so create object explicitly.
+        return CustomerMe(customerName=customer.customer_name)
 
     async def _authenticate_customer(self,
                                      customer_name: str,

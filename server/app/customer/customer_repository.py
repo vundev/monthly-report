@@ -20,8 +20,8 @@ class CustomerRepository:
         customerQuery = select(Customer).where(
             Customer.customer_name == customer_name)
         result = await self.session.execute(customerQuery)
-        user = result.scalar()
-        if user:
-            return user
+        customer = result.scalar()
+        if customer:
+            return customer
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail="User not found")
+                            detail="Customer not found")

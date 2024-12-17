@@ -1,4 +1,4 @@
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, model_validator, Field
 from fastapi import HTTPException, status
 
 
@@ -24,3 +24,7 @@ class CustomerCredentials(BaseModel):
             raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
                                 detail="Password must be at least 8 characters long.")
         return self
+
+
+class CustomerMe(BaseModel):
+    customer_name: str = Field(alias='customerName')
