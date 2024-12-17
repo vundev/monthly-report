@@ -1,0 +1,46 @@
+<div class="login-wrapper">
+  <form class="login" (submit)="submit()">
+    <section class="title">Welcome</section>
+    <div class="login-group">
+      <clr-input-container>
+        <label class="clr-sr-only">Customer name</label>
+        <input
+          type="text"
+          autocomplete="username"
+          name="username"
+          clrInput
+          placeholder="Customer name"
+          [(ngModel)]="credentials.username"
+        />
+      </clr-input-container>
+      <clr-password-container>
+        <label class="clr-sr-only">Password</label>
+        <input
+          type="password"
+          autocomplete="current-password"
+          name="password"
+          clrPassword
+          placeholder="Password"
+          [(ngModel)]="credentials.password"
+        />
+      </clr-password-container>
+      <div *ngIf="errorMessage" class="error active">{{ errorMessage }}</div>
+      <button type="submit" class="btn btn-primary">
+        {{ isRegisterPath ? "Register" : "Log in" }}
+      </button>
+      <clr-checkbox-container>
+        <clr-checkbox-wrapper>
+          <input
+            type="checkbox"
+            clrCheckbox
+            name="options1"
+            required
+            value="option1"
+            [(ngModel)]="isRegisterPath"
+          />
+          <label>New user?</label>
+        </clr-checkbox-wrapper>
+      </clr-checkbox-container>
+    </div>
+  </form>
+</div>
