@@ -1,5 +1,4 @@
 from datetime import timedelta, datetime, timezone
-from typing import Optional
 import jwt
 from ..settings.dependency import SettingsDep
 from fastapi import HTTPException, status
@@ -28,14 +27,14 @@ class TokenService:
                 token, self.settings.secret_key, algorithms=[
                     self.settings.token_alg]
             )
-            customer_name: Optional[str] = payload.get("sub")
+            customer_name: str | None = payload.get("sub")
             if customer_name is None:
                 raise invalid_token_exception
             return TokenData(customer_name=customer_name)
         except InvalidTokenError:
             raise invalid_token_exception
 
-    def _create_access_token(self, data: dict, expires_delta: Optional[timedelta] = None) -> str:
+    def _create_access_token(self, data: dict, expires_delta: timedelta | None = None) -> str:
         """Generate a new access token with an optional expiration time."""
         data_copy = data.copy()
 

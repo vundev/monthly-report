@@ -16,6 +16,7 @@
       <div *ngIf="customer; else unauthorized">
         Hello {{ customer.customerName }}
       </div>
+      <div *ngIf="errorMessage" class="error active">{{ errorMessage }}</div>
     </div>
   </div>
 </div>
