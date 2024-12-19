@@ -2,7 +2,7 @@ from server.database.dependency import SessionDep
 from .availability_logs_schema import AvailabilityLogs
 from datetime import datetime
 from .availability_logs_model import AvailabilityLevel
-from .raw_queries import query_tenant_sla, query_report
+from .raw_queries import query_tenant_sla, query_report, query_report_strict
 from server.services.dependency import QueryServiceDep
 
 
@@ -30,4 +30,8 @@ class AvailabilityLogsRepository:
 
     async def get_report(self):
         report = await self.session.execute(query_report)
+        return self.query_service.to_dict(report)
+    
+    async def get_report_strict(self):
+        report = await self.session.execute(query_report_strict)
         return self.query_service.to_dict(report)

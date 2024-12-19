@@ -27,3 +27,7 @@ class AvailabilityLogsController:
     @router.get("/report")
     async def get_report(self):
         return await self.availability_logs_repository.get_report()
+
+    @router.get("/report-strict")
+    async def get_report_strict(self):
+        return await self.availability_logs_repository.get_report_strict()

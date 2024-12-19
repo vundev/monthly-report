@@ -82,3 +82,54 @@ query_report = text(
         fd.month;
     """
 )
+
+query_report_strict = text(
+    """
+    WITH MonthlyData AS (
+        SELECT 
+            al.tenant_id,
+            strftime('%Y-%m', al.log_date) AS month,
+            MIN(CASE 
+                WHEN al.availability_level = 'Default' THEN 1
+                WHEN al.availability_level = 'Customer-Specific' THEN 2
+                -- For Expired level we return the highest value.
+                ELSE 3
+            END) AS min_availability_level
+        FROM 
+            availabilitylogs al
+        GROUP BY 
+            al.tenant_id, strftime('%Y-%m', al.log_date)
+    ),
+    FilteredData AS (
+        SELECT 
+            md.tenant_id,
+            md.month,
+            CASE md.min_availability_level
+                WHEN 1 THEN 'Default'
+                WHEN 2 THEN 'Customer-Specific'
+            END AS availability_level
+        FROM 
+            MonthlyData md
+        WHERE 
+            -- Exclude tenants which were with Expired level for the whole month
+            md.min_availability_level != 3
+    )
+    SELECT 
+        fd.month,
+        c.customer_name,
+        fd.tenant_id,
+        t.email,
+        s.service_name,
+        fd.availability_level
+    FROM 
+        FilteredData fd
+    JOIN 
+        tenant t ON t.id = fd.tenant_id
+    JOIN 
+        service s ON t.service_id = s.id
+    JOIN
+        customer c ON t.customer_id = c.id
+    ORDER BY 
+        fd.month;
+    """
+)
