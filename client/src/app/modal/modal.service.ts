@@ -24,9 +24,9 @@ export class ModalService {
     component: Type<T>,
     inputs?: Partial<T>,
     options?: { title?: string; size?: 'sm' | 'lg' | 'xl' }
-  ): ComponentRef<T> {
+  ) {
     if (this.modalRef) {
-      this.dispose();
+      return;
     }
 
     // Create the modal wrapper
@@ -40,6 +40,9 @@ export class ModalService {
     this.modalRef.instance.title = title;
     this.modalRef.instance.size = size;
     this.modalRef.instance.isOpen = true;
+    this.modalRef.instance.onCloseModal = () => {
+      this.close();
+    };
 
     // Attach the modal wrapper to the application
     this.appRef.attachView(this.modalRef.hostView);
@@ -55,16 +58,11 @@ export class ModalService {
     if (inputs) {
       Object.assign(<any>childRef.instance, inputs);
     }
-
-    return childRef;
   }
 
   close(): void {
     if (this.modalRef) {
-      this.modalRef.instance.isOpen = false;
-      setTimeout(() => {
-        this.dispose();
-      }, 300);
+      this.dispose();
     }
   }
 

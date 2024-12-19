@@ -3,7 +3,11 @@ import { Component, Input, ViewChild, ViewContainerRef } from '@angular/core';
 @Component({
   selector: 'app-modal-wrapper',
   template: `
-    <clr-modal [(clrModalOpen)]="isOpen" [clrModalSize]="size">
+    <clr-modal
+      [clrModalOpen]="isOpen"
+      (clrModalOpenChange)="onModalOpenChange($event)"
+      [clrModalSize]="size"
+    >
       <h3 class="modal-title">{{ title }}</h3>
       <div class="modal-body">
         <!-- Project modal component here -->
@@ -18,5 +22,15 @@ export class ModalWrapperComponent {
   @ViewChild('contentHost', { read: ViewContainerRef, static: true })
   contentHost!: ViewContainerRef;
 
+  onCloseModal: () => void = () => {};
+
   isOpen = false;
+
+  onModalOpenChange(isOpen: boolean) {
+    this.isOpen = isOpen;
+    if (!isOpen) {
+      // Handle case when the modal is closed with ESC or X button.
+      this.onCloseModal();
+    }
+  }
 }
