@@ -28,3 +28,4 @@ class CustomerCredentials(BaseModel):
 
 class CustomerMe(BaseModel):
     customer_name: str = Field(alias='customerName')
+    customer_id: int = Field(alias='customerId')

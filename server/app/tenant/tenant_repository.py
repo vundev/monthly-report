@@ -31,8 +31,12 @@ class TenantRepository:
         return [
             TenantInfo(service_name=service_name,
                        email=email,
-                       date_of_expiration=date_of_expiration)
-            for service_name, email, date_of_expiration in tenantsResult.all()
+                       date_of_expiration=date_of_expiration,
+                       tenant_id=tenant_id)
+            for service_name,
+            email,
+            date_of_expiration,
+            tenant_id in tenantsResult.all()
         ]
 
     @classmethod

@@ -2,6 +2,7 @@ from sqlmodel import SQLModel, Field, Relationship
 from datetime import date
 from ..customer.customer_schema import Customer
 from ..service.service_schema import Service
+from typing import List
 
 
 class Tenant(SQLModel, table=True):
@@ -13,3 +14,5 @@ class Tenant(SQLModel, table=True):
 
     service: Service = Relationship(back_populates="tenants")
     customer: Customer = Relationship(back_populates="tenants")
+
+    logs: List["AvailabilityLogs"] = Relationship(back_populates="tenant")
