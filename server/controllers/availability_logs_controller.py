@@ -19,3 +19,7 @@ class AvailabilityLogsController:
         await self.availability_logs_repository.crete_log_message(
             tenant_id=create_log_message_spec.tenant_id,
             level=create_log_message_spec.level)
+
+    @router.get("/tenant-sla")
+    async def list_tenant_sla_per_month(self):
+        return await self.availability_logs_repository.list_tenant_sla_per_month()

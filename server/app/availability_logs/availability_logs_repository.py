@@ -2,11 +2,16 @@ from server.database.dependency import SessionDep
 from .availability_logs_schema import AvailabilityLogs
 from datetime import datetime
 from .availability_logs_model import AvailabilityLevel
+from .raw_queries import query_tenant_sla
+from server.services.dependency import QueryServiceDep
 
 
 class AvailabilityLogsRepository:
-    def __init__(self, session: SessionDep):
+    def __init__(self,
+                 session: SessionDep,
+                 query_service: QueryServiceDep):
         self.session = session
+        self.query_service = query_service
 
     async def crete_log_message(self, tenant_id: int, level: AvailabilityLevel):
         log_message = AvailabilityLogs(
@@ -18,3 +23,7 @@ class AvailabilityLogsRepository:
         await self.session.commit()
         await self.session.refresh(log_message)
         return log_message
+
+    async def list_tenant_sla_per_month(self):
+        tenant_sla_per_month = await self.session.execute(query_tenant_sla)
+        return self.query_service.to_dict(tenant_sla_per_month)
