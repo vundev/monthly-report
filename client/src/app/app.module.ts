@@ -9,9 +9,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { BearerInterceptor } from './interceptors/bearer.interceptor';
+import { ModalWrapperComponent } from './modal/modal-wrapper.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, ModalWrapperComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
