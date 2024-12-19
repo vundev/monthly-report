@@ -22,6 +22,9 @@ class AvailabilityLogsController:
 
     @router.get("/tenant-sla")
     async def list_tenant_sla_per_month(self):
+        """
+        Use for debug purpose.
+        """
         return await self.availability_logs_repository.list_tenant_sla_per_month()
 
     @router.get("/report")
