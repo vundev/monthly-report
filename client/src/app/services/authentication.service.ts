@@ -12,7 +12,7 @@ export class AuthenticationService {
   private readonly storeAccessToken = (token: Token) =>
     this.cookieService.set(
       this.accessTokenCookieName,
-      token.accessToken,
+      token.access_token,
       1,
       undefined,
       undefined,

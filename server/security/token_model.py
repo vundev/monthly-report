@@ -1,12 +1,15 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class Token(BaseModel):
-    access_token: str = Field(alias='accessToken')
-    token_type: str = Field(alias='tokenType')
+    # Those keys are reserved by oath2 policy. If you change them with alias to
+    # accessToken for example the swagger will not work.
+    access_token: str
+    token_type: str
 
     class Config:
         populate_by_name = True
+
 
 class TokenData(BaseModel):
     customer_name: str
