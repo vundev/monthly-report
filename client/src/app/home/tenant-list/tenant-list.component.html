@@ -1,0 +1,15 @@
+<clr-datagrid>
+  <clr-dg-column>id</clr-dg-column>
+  <clr-dg-column>Service name</clr-dg-column>
+  <clr-dg-column>Email</clr-dg-column>
+  <clr-dg-column>Date of expiration</clr-dg-column>
+
+  <clr-dg-row *ngFor="let tenantInfo of tenantInfoList">
+    <clr-dg-cell>{{ tenantInfo.tenant_id }}</clr-dg-cell>
+    <clr-dg-cell>{{ tenantInfo.service_name }}</clr-dg-cell>
+    <clr-dg-cell>{{ tenantInfo.email }}</clr-dg-cell>
+    <clr-dg-cell>{{ tenantInfo.date_of_expiration | date }}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{ tenantInfoList.length }} tenants</clr-dg-footer>
+</clr-datagrid>
