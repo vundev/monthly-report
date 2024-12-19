@@ -2,7 +2,7 @@ from server.database.dependency import SessionDep
 from .availability_logs_schema import AvailabilityLogs
 from datetime import datetime
 from .availability_logs_model import AvailabilityLevel
-from .raw_queries import query_tenant_sla
+from .raw_queries import query_tenant_sla, query_report
 from server.services.dependency import QueryServiceDep
 
 
@@ -27,3 +27,7 @@ class AvailabilityLogsRepository:
     async def list_tenant_sla_per_month(self):
         tenant_sla_per_month = await self.session.execute(query_tenant_sla)
         return self.query_service.to_dict(tenant_sla_per_month)
+
+    async def get_report(self):
+        report = await self.session.execute(query_report)
+        return self.query_service.to_dict(report)
