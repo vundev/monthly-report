@@ -2,7 +2,7 @@ from fastapi_utils.cbv import cbv
 from fastapi import APIRouter
 from ..app.tenant.dependency import TenantRepositoryDep
 from ..app.customer.dependency import CustomerDep
-from ..app.tenant.tenant_model import CreateTenantSpec
+from ..app.tenant.tenant_model import CreateTenantSpec, TenantInfo
 
 router = APIRouter(prefix="/tenant")
 
@@ -23,6 +23,6 @@ class TenantController:
             service_id=create_tenant_spec.service_id,
             email=create_tenant_spec.email)
 
-    @router.post("/list")
+    @router.post("/list", response_model=list[TenantInfo])
     async def log_in(self):
         return await self.tenant_repository.list_tenant_infos(self.customer.customer_id)

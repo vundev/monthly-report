@@ -1,14 +1,14 @@
 from server.database.dependency import SessionDep
 from .tenant_schema import Tenant
 import datetime
-from ..service.service_schema import Service
-from .tenant_model import TenantInfo
 from .raw_queries import *
+from server.services.dependency import QueryServiceDep
 
 
 class TenantRepository:
-    def __init__(self, session: SessionDep):
+    def __init__(self, session: SessionDep, query_service: QueryServiceDep):
         self.session = session
+        self.query_service = query_service
 
     async def create_tenant(self,
                             customer_id: int,
@@ -24,20 +24,11 @@ class TenantRepository:
         return tenant
 
     async def list_tenant_infos(self, customer_id: int):
-        tenantsResult = await self.session.execute(
+        tenantInfoRows = await self.session.execute(
             query_tenant_infos, {"customer_id": customer_id}
         )
 
-        return [
-            TenantInfo(service_name=service_name,
-                       email=email,
-                       date_of_expiration=date_of_expiration,
-                       tenant_id=tenant_id)
-            for service_name,
-            email,
-            date_of_expiration,
-            tenant_id in tenantsResult.all()
-        ]
+        return self.query_service.to_dict(tenantInfoRows)
 
     @classmethod
     def _get_next_month_beginning(cls):
