@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { BearerInterceptor } from './interceptors/bearer.interceptor';
 import { ModalWrapperComponent } from './modal/modal-wrapper.component';
+import { Subject } from 'rxjs';
+
+export const REFRESH_TRIGGER = new InjectionToken<Subject<void>>(
+  'REFRESH_TRIGGER'
+);
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, ModalWrapperComponent],
@@ -27,6 +32,10 @@ import { ModalWrapperComponent } from './modal/modal-wrapper.component';
       provide: HTTP_INTERCEPTORS,
       useClass: BearerInterceptor,
       multi: true,
+    },
+    {
+      provide: REFRESH_TRIGGER,
+      useValue: new Subject<void>(),
     },
   ],
   bootstrap: [AppComponent],

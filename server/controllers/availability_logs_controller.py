@@ -2,6 +2,7 @@ from fastapi_utils.cbv import cbv
 from fastapi import APIRouter
 from ..app.availability_logs.dependency import AvailabilityLogsRepositoryDep
 from ..app.availability_logs.availability_logs_model import CreateAvailabilityLogMessageSpec
+from ..app.customer.dependency import CustomerDep
 
 router = APIRouter(prefix="/sla")
 
@@ -10,7 +11,9 @@ router = APIRouter(prefix="/sla")
 class AvailabilityLogsController:
 
     def __init__(self,
-                 availability_logs_repository: AvailabilityLogsRepositoryDep):
+                 availability_logs_repository: AvailabilityLogsRepositoryDep,
+                 # Restrict those endpoints only to authenticated users.
+                 _: CustomerDep):
         self.availability_logs_repository = availability_logs_repository
 
     @router.post("/log")

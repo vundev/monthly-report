@@ -1,3 +1,23 @@
-Tenant
-
-<button (click)="close()">close</button>
+<form clrForm>
+  <clr-input-container>
+    <label>Email</label>
+    <input
+      clrInput
+      placeholder="Tenant email"
+      name="name"
+      [(ngModel)]="tenantEmail"
+    />
+  </clr-input-container>
+  <clr-select-container>
+    <label>Select service</label>
+    <select clrSelect name="service-names" [(ngModel)]="selectedServiceId">
+      <option *ngFor="let service of serviceNameList" [value]="service.id">
+        {{ service.service_name }}
+      </option>
+    </select>
+  </clr-select-container>
+</form>
+<div class="footer">
+  <button class="btn btn-secondary" (click)="close()">Close</button>
+  <button class="btn btn-primary" (click)="submit()">Add</button>
+</div>

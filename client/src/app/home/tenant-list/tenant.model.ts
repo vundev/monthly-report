@@ -4,3 +4,8 @@ export interface TenantInfo {
   date_of_expiration: string;
   tenant_id: string;
 }
+
+export interface CreateTenantSpec {
+  email: string;
+  service_id: number;
+}
