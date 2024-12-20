@@ -8,7 +8,7 @@ Swagger: http://localhost:8000/docs
 
 Covered functionallity:
 * Register/login customer (oauth2 with jwt and bearer).
-* Create customer tenant/manage tenant availability/create report.
+* Create customer tenant/manage tenant availability level/create report.
 
 ## How to build?
 
