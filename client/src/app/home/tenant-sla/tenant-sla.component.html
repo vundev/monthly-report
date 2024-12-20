@@ -1,0 +1,21 @@
+<clr-datagrid class="datagrid-compact">
+  <clr-dg-column>Month</clr-dg-column>
+  <clr-dg-column>id</clr-dg-column>
+  <clr-dg-column>Email</clr-dg-column>
+  <clr-dg-column>Service name</clr-dg-column>
+  <clr-dg-column>Min Availability level</clr-dg-column>
+  <clr-dg-column>Expired count</clr-dg-column>
+
+  <clr-dg-row *ngFor="let tenantSlaInfo of tenantSlaInfoList">
+    <clr-dg-cell>{{ tenantSlaInfo.month }}</clr-dg-cell>
+    <clr-dg-cell>{{ tenantSlaInfo.tenant_id }}</clr-dg-cell>
+    <clr-dg-cell>{{ tenantSlaInfo.email }}</clr-dg-cell>
+    <clr-dg-cell>{{ tenantSlaInfo.service_name }}</clr-dg-cell>
+    <clr-dg-cell
+      >{{ tenantSlaInfo.min_availability_level | availabilityLevel }}</clr-dg-cell
+    >
+    <clr-dg-cell>{{ tenantSlaInfo.expired_count }}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{ tenantSlaInfoList.length }} results</clr-dg-footer>
+</clr-datagrid>

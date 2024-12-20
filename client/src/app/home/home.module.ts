@@ -8,11 +8,15 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { TenantListComponent } from './tenant-list/tenant-list.component';
 import { AvailabilityModalComponent } from './availability-modal/availability-modal.component';
+import { TenantSlaComponent } from './tenant-sla/tenant-sla.component';
+import { AvailabilityLevelPipe } from './tenant-sla/availability-level.pipe';
 
 const modals = [CreateTenantModalComponent, AvailabilityModalComponent];
+const components = [HomeComponent, TenantListComponent, TenantSlaComponent];
+const pipes = [AvailabilityLevelPipe];
 
 @NgModule({
-  declarations: [HomeComponent, TenantListComponent, ...modals],
+  declarations: [...components, ...modals, ...pipes],
   imports: [HomeRoutingModule, CommonModule, ClarityModule, FormsModule],
   entryComponents: [...modals],
   providers: [],

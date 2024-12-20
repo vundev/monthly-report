@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from enum import Enum
+from datetime import date
 
 
 class AvailabilityLevel(str, Enum):
@@ -11,3 +12,12 @@ class AvailabilityLevel(str, Enum):
 class CreateAvailabilityLogMessageSpec(BaseModel):
     tenant_id: int
     level: AvailabilityLevel
+
+
+class TenantSlaInfo(BaseModel):
+    month: str
+    tenant_id: int
+    email: str
+    service_name: str
+    min_availability_level: int
+    expired_count: int
