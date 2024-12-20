@@ -14,8 +14,6 @@ Covered functionallity:
 
 ![Add tenant](assets/2024-12-20.23.44.43.png "Add tenant")
 
-![Add tenant](assets/2024-12-20.23.44.43.png "Add tenant")
-
 ![Manage sla action](assets/2024-12-20.23.45.17.png "Manage sla action")
 
 ![Manage sla modal](assets/2024-12-20.23.46.05.png "Manage sla modal")
