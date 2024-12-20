@@ -6,6 +6,7 @@ import { CreateTenantModalComponent } from '../create-tenant-modal/create-tenant
 import { Subject } from 'rxjs';
 import { REFRESH_TRIGGER } from 'src/app/app.module';
 import { AvailabilityModalComponent } from '../availability-modal/availability-modal.component';
+import { ReportModalComponent } from '../report-modal/report-modal.component';
 
 @Component({
   selector: 'tenant-list',
@@ -41,6 +42,13 @@ export class TenantListComponent implements OnInit {
       },
       { title: 'Manage availability' }
     );
+  }
+
+  openReportModal() {
+    this.modalService.open(ReportModalComponent, undefined, {
+      title: 'Report',
+      size: 'xl',
+    });
   }
 
   private getTenantInfoList() {

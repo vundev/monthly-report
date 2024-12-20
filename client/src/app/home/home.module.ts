@@ -10,8 +10,13 @@ import { TenantListComponent } from './tenant-list/tenant-list.component';
 import { AvailabilityModalComponent } from './availability-modal/availability-modal.component';
 import { TenantSlaComponent } from './tenant-sla/tenant-sla.component';
 import { AvailabilityLevelPipe } from './tenant-sla/availability-level.pipe';
+import { ReportModalComponent } from './report-modal/report-modal.component';
 
-const modals = [CreateTenantModalComponent, AvailabilityModalComponent];
+const modals = [
+  CreateTenantModalComponent,
+  AvailabilityModalComponent,
+  ReportModalComponent,
+];
 const components = [HomeComponent, TenantListComponent, TenantSlaComponent];
 const pipes = [AvailabilityLevelPipe];
 
