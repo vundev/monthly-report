@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/modal/modal.service';
 import { ReportService } from './report.service';
 import { ReportItem } from './report.model';
@@ -9,6 +9,9 @@ import { ReportItem } from './report.model';
   styleUrls: ['report-modal.component.scss'],
 })
 export class ReportModalComponent implements OnInit {
+  @Input()
+  strict = false;
+
   reportItemList: ReportItem[] = [];
 
   constructor(
@@ -18,7 +21,7 @@ export class ReportModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.reportService
-      .getCustomersReport$()
+      .getCustomersReport$(this.strict)
       .subscribe((list) => (this.reportItemList = list));
   }
 

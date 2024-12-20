@@ -7,7 +7,9 @@ import { ReportItem } from './report.model';
 export class ReportService {
   constructor(private http: HttpClient) {}
 
-  getCustomersReport$(): Observable<ReportItem[]> {
-    return this.http.get<ReportItem[]>('/api/sla/report');
+  getCustomersReport$(strict: boolean): Observable<ReportItem[]> {
+    return this.http.get<ReportItem[]>(
+      strict ? '/api/sla/report-strict' : '/api/sla/report'
+    );
   }
 }
