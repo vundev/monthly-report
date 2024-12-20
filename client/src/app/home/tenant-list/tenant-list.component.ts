@@ -37,6 +37,7 @@ export class TenantListComponent implements OnInit {
       AvailabilityModalComponent,
       {
         tenant_id: tenantInfo.tenant_id,
+        tenant_email: tenantInfo.email,
       },
       { title: 'Manage availability' }
     );

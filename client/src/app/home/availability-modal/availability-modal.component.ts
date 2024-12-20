@@ -17,6 +17,9 @@ export class AvailabilityModalComponent implements OnInit {
   @Input()
   tenant_id!: number;
 
+  @Input()
+  tenant_email!: string;
+
   selectedLevel: AvailabilityLevel = AvailabilityLevel.DEFAULT;
 
   constructor(
