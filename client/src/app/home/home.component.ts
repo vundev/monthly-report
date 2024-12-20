@@ -35,10 +35,14 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  openReportModal() {
-    this.modalService.open(ReportModalComponent, undefined, {
-      title: 'Report',
-      size: 'xl',
-    });
+  openReportModal(strict: boolean = false) {
+    this.modalService.open(
+      ReportModalComponent,
+      { strict },
+      {
+        title: strict ? 'Report strict' : 'Report',
+        size: 'xl',
+      }
+    );
   }
 }
