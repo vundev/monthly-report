@@ -2,9 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { TenantService } from './tenant.service';
 import { TenantInfo } from './tenant.model';
 import { ModalService } from 'src/app/modal/modal.service';
-import { CreateTenantComponent } from '../create-tenant-modal/create-tenant-modal.component';
+import { CreateTenantModalComponent } from '../create-tenant-modal/create-tenant-modal.component';
 import { Subject } from 'rxjs';
 import { REFRESH_TRIGGER } from 'src/app/app.module';
+import { AvailabilityModalComponent } from '../availability-modal/availability-modal.component';
 
 @Component({
   selector: 'tenant-list',
@@ -26,9 +27,19 @@ export class TenantListComponent implements OnInit {
   }
 
   openCreateTenantModal() {
-    this.modalService.open(CreateTenantComponent, undefined, {
+    this.modalService.open(CreateTenantModalComponent, undefined, {
       title: 'Add tenant',
     });
+  }
+
+  manageAvailability(tenantInfo: TenantInfo) {
+    this.modalService.open(
+      AvailabilityModalComponent,
+      {
+        tenant_id: tenantInfo.tenant_id,
+      },
+      { title: 'Manage availability' }
+    );
   }
 
   private getTenantInfoList() {

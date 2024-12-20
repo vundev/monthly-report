@@ -1,0 +1,20 @@
+<form clrForm>
+  <clr-select-container>
+    <label>Availability level</label>
+    <select clrSelect name="service-names" [(ngModel)]="selectedLevel">
+      <option [value]="defaultAvailabilityLevel">
+        {{ defaultAvailabilityLevel }}
+      </option>
+      <option [value]="customerSpecificAvailabilityLevel">
+        {{ customerSpecificAvailabilityLevel }}
+      </option>
+      <option [value]="expiredAvailabilityLevel">
+        {{ expiredAvailabilityLevel }}
+      </option>
+    </select>
+  </clr-select-container>
+</form>
+<div class="footer">
+  <button class="btn btn-secondary" (click)="close()">Close</button>
+  <button class="btn btn-primary" (click)="submit()">Commit</button>
+</div>

@@ -9,7 +9,7 @@
     />
   </clr-input-container>
   <clr-select-container>
-    <label>Select service</label>
+    <label>Service</label>
     <select clrSelect name="service-names" [(ngModel)]="selectedServiceId">
       <option *ngFor="let service of serviceNameList" [value]="service.id">
         {{ service.service_name }}
