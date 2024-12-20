@@ -1,6 +1,7 @@
 from functools import lru_cache
 from .settings_model import Settings
 
+# --- Define here dependency resolvers. ---
 
 @lru_cache
 def get_settings():
