@@ -21,3 +21,11 @@ class TenantSlaInfo(BaseModel):
     service_name: str
     min_availability_level: int
     expired_count: int
+
+
+class ReportItem(BaseModel):
+    month: str
+    customer_name: str
+    email: str
+    service_name: str
+    availability_level: str

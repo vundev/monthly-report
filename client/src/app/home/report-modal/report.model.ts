@@ -1,11 +1,7 @@
-export enum AvailabilityLevel {
-  DEFAULT = 'Default',
-  CUSTOMER_SPECIFIC = 'Customer-Specific',
-  EXPIRED = 'Expired',
-  UNKNOWN = 'Unknwon',
-}
-
-export interface CreateAvailabilityLogMessageSpec {
-  tenant_id: number;
-  level: AvailabilityLevel;
+export interface ReportItem {
+  month: string;
+  customer_name: string;
+  email: string;
+  service_name: string;
+  availability_level: string;
 }

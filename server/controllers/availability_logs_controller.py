@@ -1,7 +1,7 @@
 from fastapi_utils.cbv import cbv
 from fastapi import APIRouter
 from ..app.availability_logs.dependency import AvailabilityLogsRepositoryDep
-from ..app.availability_logs.availability_logs_model import CreateAvailabilityLogMessageSpec, TenantSlaInfo
+from ..app.availability_logs.availability_logs_model import CreateAvailabilityLogMessageSpec, TenantSlaInfo, ReportItem
 from ..app.customer.dependency import CustomerDep
 
 router = APIRouter(prefix="/sla")
@@ -30,7 +30,7 @@ class AvailabilityLogsController:
         """
         return await self.availability_logs_repository.list_tenant_sla_per_month()
 
-    @router.get("/report")
+    @router.get("/report", response_model=list[ReportItem])
     async def get_report(self):
         return await self.availability_logs_repository.get_report()
 
