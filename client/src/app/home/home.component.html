@@ -6,8 +6,14 @@
       >
     </div>
     <div class="header-nav">
-      <a class="nav-link" (click)="logout()" href="javascript:void(0)"
-        ><span class="nav-title">Log out</span></a
+      <a class="nav-link nav-text" (click)="logout()" href="javascript:void(0)"
+        >Log out</a
+      >
+      <a
+        class="active nav-link nav-text"
+        (click)="openReportModal()"
+        href="javascript:void(0)"
+        >Report</a
       >
     </div>
   </header>

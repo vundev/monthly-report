@@ -4,6 +4,8 @@ import { CustomerMe } from '../model/customer.model';
 import { CustomerService } from './customer.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { extractErrorMessage } from '../global';
+import { ReportModalComponent } from './report-modal/report-modal.component';
+import { ModalService } from '../modal/modal.service';
 
 @Component({
   selector: 'home',
@@ -17,7 +19,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private customerService: CustomerService,
-    private authenticationServie: AuthenticationService
+    private authenticationServie: AuthenticationService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -30,5 +33,12 @@ export class HomeComponent implements OnInit {
   logout() {
     this.authenticationServie.logout();
     this.router.navigate(['login']);
+  }
+
+  openReportModal() {
+    this.modalService.open(ReportModalComponent, undefined, {
+      title: 'Report',
+      size: 'xl',
+    });
   }
 }
