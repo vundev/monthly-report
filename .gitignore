@@ -9,5 +9,4 @@ wheels/
 # Virtual environments
 .venv
 
-server/.env
 client/node_modules
