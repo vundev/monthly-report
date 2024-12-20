@@ -53,6 +53,6 @@ dependency.py - Define FastApi dependencies to decouple app components. Usually 
 repository, service or variables(e.g. settings) as dependencies.
 
 controller.py - Define all endpoints for a router inside a controller. The controller
-avoids duplication e.g. we don't want to have in all endpoint functions e.g. parameter session 
+avoids duplication, e.g. we don't want to have in all endpoint functions parameter - session 
 (database session). Controllers are part from the fastapi-utils module.
 
