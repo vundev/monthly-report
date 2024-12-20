@@ -10,17 +10,17 @@ Covered functionallity:
 * Register/login customer (oauth2 with jwt and bearer).
 * Create customer tenant/manage tenant availability level/create report.
 
-![Tenant list](assets/Screenshot 2024-12-20 at 23.43.46.png "Tenant list")
+![Tenant list](assets/2024-12-20.23.43.46.png "Tenant list")
 
-![Add tenant](assets/Screenshot 2024-12-20 at 23.44.43.png "Add tenant")
+![Add tenant](assets/2024-12-20.23.44.43.png "Add tenant")
 
-![Add tenant](assets/Screenshot 2024-12-20 at 23.44.43.png "Add tenant")
+![Add tenant](assets/2024-12-20.23.44.43.png "Add tenant")
 
-![Manage sla action](assets/Screenshot 2024-12-20 at 23.45.17.png "Manage sla action")
+![Manage sla action](assets/2024-12-20.23.45.17.png "Manage sla action")
 
-![Manage sla modal](assets/Screenshot 2024-12-20 at 23.46.05.png "Manage sla modal")
+![Manage sla modal](assets/2024-12-20.23.46.05.png "Manage sla modal")
 
-![Report](assets/Screenshot 2024-12-20 at 23.46.38.png "Report")
+![Report](assets/2024-12-20.23.46.38.png "Report")
 
 
 ## How to build?
