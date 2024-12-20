@@ -10,6 +10,19 @@ Covered functionallity:
 * Register/login customer (oauth2 with jwt and bearer).
 * Create customer tenant/manage tenant availability level/create report.
 
+![Tenant list](assets/Screenshot 2024-12-20 at 23.43.46.png "Tenant list")
+
+![Add tenant](assets/Screenshot 2024-12-20 at 23.44.43.png "Add tenant")
+
+![Add tenant](assets/Screenshot 2024-12-20 at 23.44.43.png "Add tenant")
+
+![Manage sla action](assets/Screenshot 2024-12-20 at 23.45.17.png "Manage sla action")
+
+![Manage sla modal](assets/Screenshot 2024-12-20 at 23.46.05.png "Manage sla modal")
+
+![Report](assets/Screenshot 2024-12-20 at 23.46.38.png "Report")
+
+
 ## How to build?
 
 1. Install `uv` package manager:
