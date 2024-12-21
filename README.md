@@ -37,7 +37,7 @@ the watcher with `uv run fastapi dev server/main.py`.
 Go to client dir `cd monthly-report/client`, install dependencies `npm install`
 and start the watcher with `npx ng serve`.
 
-## Server architecture
+## Server structure
 
 Mix between ORM and raw sql queries.
 
