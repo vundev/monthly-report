@@ -28,10 +28,6 @@ class AvailabilityLogsRepository:
         tenant_sla_per_month = await self.session.execute(query_tenant_sla)
         return self.query_service.to_dict(tenant_sla_per_month)
 
-    async def get_report(self):
-        report = await self.session.execute(query_report)
-        return self.query_service.to_dict(report)
-    
-    async def get_report_strict(self):
-        report = await self.session.execute(query_report_strict)
+    async def get_report(self, strict: bool):
+        report = await self.session.execute(query_report_strict if strict else query_report)
         return self.query_service.to_dict(report)
