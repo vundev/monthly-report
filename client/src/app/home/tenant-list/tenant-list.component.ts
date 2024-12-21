@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
 import { REFRESH_TRIGGER } from 'src/app/app.module';
 import { ModalService } from 'src/app/modal/modal.service';
 import { AvailabilityModalComponent } from '../availability-modal/availability-modal.component';
@@ -12,8 +12,10 @@ import { TenantService } from './tenant.service';
   templateUrl: 'tenant-list.component.html',
   styleUrls: ['tenant-list.component.scss'],
 })
-export class TenantListComponent implements OnInit {
+export class TenantListComponent implements OnInit, OnDestroy {
   tenantInfoList: TenantInfo[] = [];
+
+  private subscriptions = new Subscription();
 
   constructor(
     private tenantService: TenantService,
@@ -23,7 +25,13 @@ export class TenantListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTenantInfoList();
-    this.refreshTrigger.subscribe(() => this.getTenantInfoList());
+    this.subscriptions.add(
+      this.refreshTrigger.subscribe(() => this.getTenantInfoList())
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   openCreateTenantModal() {
