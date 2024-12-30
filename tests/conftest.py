@@ -8,7 +8,9 @@ from server.main import app
 from pytest import MonkeyPatch
 
 
-# Use autouse to never have to explicitly define client in tests in order to be created.
+# 1. Use autouse to never have to explicitly define client in tests in order to be created.
+# 2. For each test case create new app instance. Do not change that since we
+# are going to hit race conditions when overriding dependencies in parallel tests.
 @pytest.fixture(autouse=True)
 async def client(monkeypatch: MonkeyPatch) -> AsyncGenerator[AsyncClient, None]:
     # Patch database uri env variable. For the tests we use in memory sqlite db.

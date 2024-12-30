@@ -8,6 +8,10 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="customer/access-token")
 password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
+def get_password_context():
+    return password_context
+
+
 async def validate_customer_form_data(form_data: OAuth2PasswordRequestForm = Depends()):
     username = form_data.username.strip()
     password = form_data.password
