@@ -8,22 +8,11 @@ from server.main import app
 from pytest import MonkeyPatch
 
 
-@pytest.fixture(scope="session")
-def monkeymodule():
-    """
-    Expose monkeypatch in scope session fixtures.
-    """
-    from _pytest.monkeypatch import MonkeyPatch
-    monkey_patch = MonkeyPatch()
-    yield monkey_patch
-    monkey_patch.undo()
-
-
 # Use autouse to never have to explicitly define client in tests in order to be created.
-@pytest.fixture(scope="session", autouse=True)
-async def client(monkeymodule: MonkeyPatch) -> AsyncGenerator[AsyncClient, None]:
+@pytest.fixture(autouse=True)
+async def client(monkeypatch: MonkeyPatch) -> AsyncGenerator[AsyncClient, None]:
     # Patch database uri env variable. For the tests we use in memory sqlite db.
-    monkeymodule.setenv("DATABASE_URI", "sqlite+aiosqlite:///:memory:")
+    monkeypatch.setenv("DATABASE_URI", "sqlite+aiosqlite:///:memory:")
 
     # Migrate db.
     await app.router.startup()
