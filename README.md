@@ -41,9 +41,18 @@ and start the watcher with `npx ng serve`.
 
 1. Test server
 
+### Run tests
+
 Go to project dir `cd monthly-report` and run `uv run pytest` it will run
 all .py tests inside tests folder.
-In order to run tests in parallel type `uv run pytest -n <number of workers>`. 
+
+### Run tests in parallel
+
+In order to run tests in parallel type `uv run pytest -n <number of workers>`.
+
+### Test coverage
+
+`uv run pytest --cov=server --cov-report=html tests/`
 
 ## Server structure
 
